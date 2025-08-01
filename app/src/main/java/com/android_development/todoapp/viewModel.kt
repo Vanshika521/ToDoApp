@@ -20,5 +20,6 @@ class viewModel : ViewModel(){
 
     fun dlt(id : Int){
         manager.dlt(id)
+        all()
     }
 }

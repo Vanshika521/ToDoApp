@@ -36,10 +36,10 @@ import java.text.SimpleDateFormat
 
 
 @Composable
-fun ToDoList(viewModel: viewModel){
+fun ToDoList(viewModel: viewModel) {
 
     val todoList by viewModel.todoList.observeAsState()
-    var input by remember{
+    var input by remember {
         mutableStateOf("")
     }
 
@@ -50,21 +50,27 @@ fun ToDoList(viewModel: viewModel){
             .padding(10.dp)
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ){
-            OutlinedTextField(value = input, onValueChange = {
-                input = it
-            } )
-            Button(onClick = {
-                viewModel.add(input)
-                input = ""
-            },
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            OutlinedTextField(
+                value = input,
+                onValueChange = { input = it },
+                modifier = Modifier.weight(1f)
+            )
+            Button(
+                onClick = {
+                    viewModel.add(input)
+                    input = ""
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Blue,
                     contentColor = Color.White
-                )
+                ),
+                modifier = Modifier.padding(start = 4.dp)
             ) {
                 Text(text = "ADD")
             }
@@ -73,22 +79,22 @@ fun ToDoList(viewModel: viewModel){
         todoList?.let {
             LazyColumn(
                 content = {
-                    itemsIndexed(it){index: Int, item: Tasks ->
+                    itemsIndexed(it) { index: Int, item: Tasks ->
                         Items(item = item, onDlt = {
                             viewModel.dlt(item.id)
                         })
                     }
                 }
             )
-        }?: Text(
+        } ?: Text(
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             text = "No Items Yet",
             fontSize = 16.sp
         )
-
     }
 }
+
 
 @Composable
 fun Items(item : Tasks,onDlt : () -> Unit){
