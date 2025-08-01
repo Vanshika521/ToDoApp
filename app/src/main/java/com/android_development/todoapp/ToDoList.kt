@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 
 import androidx.compose.material3.IconButton
@@ -45,6 +46,7 @@ fun ToDoList(viewModel: viewModel){
     Column(
         modifier = Modifier
             .fillMaxHeight()
+            .background(Color.White)
             .padding(10.dp)
     ) {
         Row(
@@ -58,7 +60,12 @@ fun ToDoList(viewModel: viewModel){
             Button(onClick = {
                 viewModel.add(input)
                 input = ""
-            }) {
+            },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Blue,
+                    contentColor = Color.White
+                )
+            ) {
                 Text(text = "ADD")
             }
         }
@@ -90,7 +97,7 @@ fun Items(item : Tasks,onDlt : () -> Unit){
             .fillMaxWidth()
             .padding(8.dp)
             .clip(RoundedCornerShape(10.dp))
-            .background(Color.Green)
+            .background(Color.Blue)
             .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
     ){
