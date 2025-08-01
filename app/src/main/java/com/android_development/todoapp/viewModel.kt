@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class viewModel : ViewModel(){
 
     private var _todoList = MutableLiveData<List<Tasks>>()
-    val todoList : LiveData<List<Tasks>> = todoList
+    val todoList : LiveData<List<Tasks>> = _todoList
 
     fun all(){
         _todoList.value = manager.all().reversed()
