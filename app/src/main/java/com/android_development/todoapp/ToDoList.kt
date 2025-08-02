@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,13 +55,15 @@ fun ToDoList(viewModel: viewModel) {
                 .fillMaxWidth()
                 .padding(10.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically
         ) {
             OutlinedTextField(
                 value = input,
                 onValueChange = { input = it },
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                textStyle = TextStyle(color = Color.Black)
             )
+
             Button(
                 onClick = {
                     viewModel.add(input)
@@ -89,6 +92,7 @@ fun ToDoList(viewModel: viewModel) {
         } ?: Text(
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
+            color = Color.Black ,
             text = "No Items Yet",
             fontSize = 16.sp
         )
